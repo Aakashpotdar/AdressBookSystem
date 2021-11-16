@@ -31,7 +31,7 @@ namespace uc4_delete
             {
                 Console.WriteLine("A - Add an Data");
                 Console.WriteLine("E - Edit an Data");
-                Console.WriteLine("D - Edit an Data");
+                Console.WriteLine("D - Delete an Data");
                 Console.WriteLine("Q - Quit");
             }
 
@@ -50,6 +50,7 @@ namespace uc4_delete
                 {
                     case "A":
                         Console.WriteLine("Enter First Name:,Last Name:,adress:,city:,state:,zip cod:,mobile number:,Mail Id: ");
+
                         name = Console.ReadLine();
                         lastName = Console.ReadLine();
                         address = Console.ReadLine();
@@ -58,36 +59,23 @@ namespace uc4_delete
                         zipCode = int.Parse(Console.ReadLine());
                         mobileNum = double.Parse(Console.ReadLine());
                         mailId = Console.ReadLine();
-                        if (book.add(name, lastName, address, city, state, zipCode, mobileNum, mailId))
-                        {
-                            Console.WriteLine("Address successfully added!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("An address is already on file for {0}.", name);
-                        }
+
+                        book.add(name, lastName, address, city, state, zipCode, mobileNum, mailId);
+                        Console.WriteLine("Address successfully added!");
+
                         break;
-                     case "D":
-                                 Console.WriteLine("Enter Name to Delete: ");
+                    case "D":
+                        Console.WriteLine("Enter Name to Delete: ");
                         name = Console.ReadLine();
-                        if (book.remove(name))
-                        {
-                            Console.WriteLine("Data successfully removed");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Data for {0} could not be found.", name);
-                        }
+                        book.remove(name);
+                        Console.WriteLine("Data successfully removed");
+
                         break;
                     case "E":
                         Console.WriteLine("Enter Name to Edit: ");
                         name = Console.ReadLine();
                         Address addr = book.find(name);
-                        if (addr == null)
-                        {
-                            Console.WriteLine("Data for {0} count not be found.", name);
-                        }
-                        else
+                        if (addr != null)
                         {
                             Console.WriteLine("Enter new Address,city,state,zip code,mobile number,mail id");
                             addr.address = Console.ReadLine();
@@ -100,6 +88,7 @@ namespace uc4_delete
                         }
                         break;
                 }
+           
             }
         }
     }
